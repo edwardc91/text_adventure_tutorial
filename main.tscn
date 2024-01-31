@@ -1,4 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://dickmj7cq3d68"]
+[gd_scene load_steps=8 format=3 uid="uid://dickmj7cq3d68"]
+
+[ext_resource type="FontFile" uid="uid://djlirv204gvvk" path="res://assets/fonts/CutiveMono-Regular.ttf" id="1_gm0px"]
+[ext_resource type="Script" path="res://Input.gd" id="1_ufa6h"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ocxkw"]
 bg_color = Color(0.0745098, 0.0745098, 0.0745098, 1)
@@ -7,7 +10,11 @@ bg_color = Color(0.0745098, 0.0745098, 0.0745098, 1)
 bg_color = Color(0.207843, 0.207843, 0.207843, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_67pt8"]
-bg_color = Color(0.207843, 0.207843, 0.207843, 1)
+bg_color = Color(0.25098, 0.25098, 0.25098, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_m5a35"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ch1s8"]
 
 [node name="Main" type="Control"]
 layout_mode = 3
@@ -46,3 +53,23 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_8ewju")
 custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_67pt8")
+
+[node name="Columns" type="HBoxContainer" parent="Background/MarginContainer/Rows/InputArea"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Caret" type="Label" parent="Background/MarginContainer/Rows/InputArea/Columns"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_gm0px")
+theme_override_font_sizes/font_size = 28
+text = " >"
+
+[node name="Input" type="LineEdit" parent="Background/MarginContainer/Rows/InputArea/Columns"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("1_gm0px")
+theme_override_font_sizes/font_size = 28
+theme_override_styles/normal = SubResource("StyleBoxEmpty_m5a35")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ch1s8")
+max_length = 48
+script = ExtResource("1_ufa6h")
