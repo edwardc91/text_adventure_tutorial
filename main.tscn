@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://dickmj7cq3d68"]
+[gd_scene load_steps=9 format=3 uid="uid://dickmj7cq3d68"]
 
+[ext_resource type="Script" path="res://main.gd" id="1_3ltkm"]
 [ext_resource type="FontFile" uid="uid://djlirv204gvvk" path="res://assets/fonts/CutiveMono-Regular.ttf" id="1_gm0px"]
-[ext_resource type="Script" path="res://Input.gd" id="1_ufa6h"]
+[ext_resource type="Script" path="res://components/ui/Input.gd" id="3_vm72w"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ocxkw"]
 bg_color = Color(0.0745098, 0.0745098, 0.0745098, 1)
@@ -23,6 +24,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_3ltkm")
 
 [node name="Background" type="PanelContainer" parent="."]
 layout_mode = 1
@@ -49,6 +51,22 @@ layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_8ewju")
 
+[node name="HistoryMargin" type="MarginContainer" parent="Background/MarginContainer/Rows/GameInfo"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 10
+
+[node name="HistoryScrollContainer" type="ScrollContainer" parent="Background/MarginContainer/Rows/GameInfo/HistoryMargin"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="HistoryRows" type="VBoxContainer" parent="Background/MarginContainer/Rows/GameInfo/HistoryMargin/HistoryScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 20
+
 [node name="InputArea" type="PanelContainer" parent="Background/MarginContainer/Rows"]
 custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
@@ -72,4 +90,7 @@ theme_override_font_sizes/font_size = 28
 theme_override_styles/normal = SubResource("StyleBoxEmpty_m5a35")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_ch1s8")
 max_length = 48
-script = ExtResource("1_ufa6h")
+script = ExtResource("3_vm72w")
+
+[connection signal="text_submitted" from="Background/MarginContainer/Rows/InputArea/Columns/Input" to="." method="_on_input_text_submitted"]
+[connection signal="text_submitted" from="Background/MarginContainer/Rows/InputArea/Columns/Input" to="Background/MarginContainer/Rows/InputArea/Columns/Input" method="_on_text_submitted"]
