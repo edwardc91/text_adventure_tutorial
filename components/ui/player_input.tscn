@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://7go460m6n6qq"]
+
+[ext_resource type="FontFile" uid="uid://djlirv204gvvk" path="res://assets/fonts/CutiveMono-Regular.ttf" id="1_ptjbu"]
+
+[node name="PlayerInput" type="Label"]
+custom_minimum_size = Vector2(400, 0)
+theme_override_colors/font_color = Color(0.65098, 0.65098, 0.65098, 1)
+theme_override_fonts/font = ExtResource("1_ptjbu")
+theme_override_font_sizes/font_size = 20
+text = "> player input"
+autowrap_mode = 3

@@ -1,22 +1,20 @@
-[gd_scene load_steps=3 format=3 uid="uid://boysug2ajyjca"]
+[gd_scene load_steps=4 format=3 uid="uid://boysug2ajyjca"]
 
 [ext_resource type="Script" path="res://components/ui/input_response.gd" id="1_jr3rk"]
-[ext_resource type="FontFile" uid="uid://djlirv204gvvk" path="res://assets/fonts/CutiveMono-Regular.ttf" id="2_dwgd3"]
+[ext_resource type="PackedScene" uid="uid://7go460m6n6qq" path="res://components/ui/player_input.tscn" id="2_ltm7k"]
+[ext_resource type="PackedScene" uid="uid://cv1inpyynerli" path="res://components/ui/response.tscn" id="3_q1th8"]
 
 [node name="InputResponse" type="VBoxContainer"]
+offset_right = 319.0
+offset_bottom = 59.0
 script = ExtResource("1_jr3rk")
 
-[node name="PlayerInput" type="Label" parent="."]
+[node name="PlayerInput" parent="." instance=ExtResource("2_ltm7k")]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_colors/font_color = Color(0.65098, 0.65098, 0.65098, 1)
-theme_override_fonts/font = ExtResource("2_dwgd3")
-theme_override_font_sizes/font_size = 20
-text = "> player input"
 
-[node name="Response" type="Label" parent="."]
+[node name="Response" parent="." instance=ExtResource("3_q1th8")]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(10, 0)
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_dwgd3")
-theme_override_font_sizes/font_size = 28
-text = "Game response here"
+autowrap_mode = 1
