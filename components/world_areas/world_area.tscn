@@ -9,6 +9,8 @@ offset_top = 44.0
 offset_right = 100.0
 offset_bottom = 84.0
 script = ExtResource("1_kj6kv")
+area_name = ""
+description = ""
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2
@@ -23,12 +25,17 @@ layout_mode = 2
 [node name="NameLabel" type="Label" parent="MarginContainer/Rows"]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_constants/outline_size = 1
 theme_override_fonts/font = ExtResource("2_obuiq")
 theme_override_font_sizes/font_size = 20
-text = "Area Name"
+text = "New Area"
+horizontal_alignment = 1
 
-[node name="DescriptionLabels" type="Label" parent="MarginContainer/Rows"]
+[node name="DescriptionLabel" type="Label" parent="MarginContainer/Rows"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_obuiq")
-text = "A area description to show to the player"
+text = "Area description
+"
+autowrap_mode = 3

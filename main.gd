@@ -24,7 +24,7 @@ func delete_history_beyond_limit() -> void:
 			_history_rows.get_child(i).queue_free()
 
 
-func handle_response_added(response_text: String) -> void:
+func create_response(response_text: String) -> void:
 	var response_scene_inst = response_scene.instantiate()
 	response_scene_inst.set_text(response_text)
 	add_game_info_object(response_scene_inst)
@@ -32,15 +32,15 @@ func handle_response_added(response_text: String) -> void:
 
 func _ready() -> void:
 	_history_scrollbar.changed.connect(_on_history_scroll_changed)
-	_command_processor.response_added.connect(_on_command_process_response_added)
-	handle_response_added(
+	_area_manager.create_world()
+	create_response(
 		'Bienvenido a esta simple aventura de texto. Introduzca "ayuda" para ver las posibles órdenes.'
 	)
-	_command_processor.initialize(_area_manager.get_child(0))
+	create_response(_command_processor.initialize(_area_manager.get_child(0)))
 
 
 func _on_command_process_response_added(response_text: String) -> void:
-	handle_response_added(response_text)
+	create_response(response_text)
 
 
 func _on_history_scroll_changed() -> void:

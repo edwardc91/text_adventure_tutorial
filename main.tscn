@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://dickmj7cq3d68"]
+[gd_scene load_steps=12 format=3 uid="uid://dickmj7cq3d68"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_3ltkm"]
 [ext_resource type="FontFile" uid="uid://djlirv204gvvk" path="res://assets/fonts/CutiveMono-Regular.ttf" id="1_gm0px"]
 [ext_resource type="Script" path="res://scripts/CommandProcessor.gd" id="2_pegya"]
 [ext_resource type="PackedScene" uid="uid://beprbnjjk5egq" path="res://components/world_areas/world_area.tscn" id="3_chts5"]
+[ext_resource type="Script" path="res://scripts/AreaManager.gd" id="3_ilbdm"]
 [ext_resource type="Script" path="res://components/ui/Input.gd" id="3_vm72w"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ocxkw"]
@@ -34,12 +35,24 @@ script = ExtResource("2_pegya")
 
 [node name="AreaManager" type="Node" parent="."]
 unique_name_in_owner = true
+script = ExtResource("3_ilbdm")
 
-[node name="WorldArea" parent="AreaManager" instance=ExtResource("3_chts5")]
-offset_left = 37.0
-offset_top = -308.0
-offset_right = 465.0
-offset_bottom = -222.0
+[node name="Lobby" parent="AreaManager" instance=ExtResource("3_chts5")]
+offset_left = 82.0
+offset_top = -907.0
+offset_right = 510.0
+offset_bottom = -821.0
+area_name = "Lobby"
+description = "Un lobby amueblado. Una chimenea encendida al fondo"
+
+[node name="Kitchen" parent="AreaManager" instance=ExtResource("3_chts5")]
+offset_left = 540.0
+offset_top = -907.0
+offset_right = 968.0
+offset_bottom = -821.0
+area_name = "Cocina"
+description = "Una cocina con platos deliciosos en la meseta
+"
 
 [node name="GameUserInterface" type="PanelContainer" parent="."]
 layout_mode = 1

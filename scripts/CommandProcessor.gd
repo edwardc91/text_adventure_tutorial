@@ -1,12 +1,24 @@
 extends Node
 
-signal response_added(response_text: String)
-
 var _current_area: WorldArea = null
 
 
-func initialize(starting_area: WorldArea) -> void:
-	change_area(starting_area)
+func initialize(starting_area: WorldArea) -> String:
+	return change_area(starting_area)
+
+
+func parse_direction(direction: String) -> String:
+	match direction:
+		"norte":
+			return "north"
+		"sur":
+			return "south"
+		"este":
+			return "east"
+		"oeste":
+			return "west"
+		_:
+			return ""
 
 
 func process_command(input: String) -> String:
@@ -34,17 +46,33 @@ func go(direction: String) -> String:
 	if direction == "":
 		return "¿Hacia donde desea ir?"
 
-	return "Te dirigiste al %s" % direction
+	var parsed_direction = parse_direction(direction)
+	if _current_area.area_exits.has(parsed_direction):
+		var exit = _current_area.area_exits[parsed_direction]
+		var exit_area_data = exit.get_direction_exit_data(_current_area)
+		if exit_area_data[0]:
+			if not exit_area_data[1]:
+				return "Has ido hacia el %s" % direction + "\n" + change_area(exit_area_data[0])
+
+			return "La salida hacia el %s está bloqueada" % direction
+
+		return "No puedes avanzar porque dios se equivocó"
+
+	return "No hay salida hacia el %s" % direction
 
 
 func help() -> String:
 	return "Puedes usar estas órdenes: ir [dirección]"
 
 
-func change_area(new_area: WorldArea) -> void:
+func change_area(new_area: WorldArea) -> String:
 	_current_area = new_area
 	var strings: PackedStringArray = PackedStringArray(
-		["You entered %s" % new_area.area_name, new_area.area_name]
+		[
+			"Has entrado en %s" % new_area.area_name,
+			new_area.description,
+			"Salidas: %s" % " ".join(PackedStringArray(new_area.area_exits.keys()))
+		]
 	)
 	var response = "\n".join(strings)
-	response_added.emit(response)
+	return response
