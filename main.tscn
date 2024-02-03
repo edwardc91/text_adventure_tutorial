@@ -40,16 +40,16 @@ script = ExtResource("3_ilbdm")
 [node name="Lobby" parent="AreaManager" instance=ExtResource("3_chts5")]
 offset_left = 82.0
 offset_top = -907.0
-offset_right = 510.0
-offset_bottom = -821.0
+offset_right = 422.0
+offset_bottom = -799.0
 area_name = "Lobby"
 description = "Un lobby amueblado. Una chimenea encendida al fondo"
 
 [node name="Kitchen" parent="AreaManager" instance=ExtResource("3_chts5")]
-offset_left = 540.0
-offset_top = -907.0
-offset_right = 968.0
-offset_bottom = -821.0
+offset_left = 539.0
+offset_top = -911.0
+offset_right = 879.0
+offset_bottom = -803.0
 area_name = "Cocina"
 description = "Una cocina con platos deliciosos en la meseta
 "

@@ -67,12 +67,6 @@ func help() -> String:
 
 func change_area(new_area: WorldArea) -> String:
 	_current_area = new_area
-	var strings: PackedStringArray = PackedStringArray(
-		[
-			"Has entrado en %s" % new_area.area_name,
-			new_area.description,
-			"Salidas: %s" % " ".join(PackedStringArray(new_area.area_exits.keys()))
-		]
-	)
-	var response = "\n".join(strings)
+
+	var response = _current_area.get_area_full_description()
 	return response

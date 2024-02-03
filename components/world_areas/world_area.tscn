@@ -28,7 +28,6 @@ layout_mode = 2
 theme_override_constants/outline_size = 1
 theme_override_fonts/font = ExtResource("2_obuiq")
 theme_override_font_sizes/font_size = 20
-text = "New Area"
 horizontal_alignment = 1
 
 [node name="DescriptionLabel" type="Label" parent="MarginContainer/Rows"]
@@ -36,6 +35,4 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_obuiq")
-text = "Area description
-"
 autowrap_mode = 3
