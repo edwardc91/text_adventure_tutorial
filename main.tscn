@@ -1,20 +1,21 @@
-[gd_scene load_steps=12 format=3 uid="uid://dickmj7cq3d68"]
+[gd_scene load_steps=13 format=3 uid="uid://dickmj7cq3d68"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_3ltkm"]
-[ext_resource type="FontFile" uid="uid://djlirv204gvvk" path="res://assets/fonts/CutiveMono-Regular.ttf" id="1_gm0px"]
+[ext_resource type="Script" path="res://components/player/Player.gd" id="2_17s4e"]
 [ext_resource type="Script" path="res://scripts/CommandProcessor.gd" id="2_pegya"]
 [ext_resource type="PackedScene" uid="uid://beprbnjjk5egq" path="res://components/world_areas/world_area.tscn" id="3_chts5"]
 [ext_resource type="Script" path="res://scripts/AreaManager.gd" id="3_ilbdm"]
 [ext_resource type="Script" path="res://components/ui/Input.gd" id="3_vm72w"]
+[ext_resource type="FontFile" uid="uid://b3oer5hyf1nmw" path="res://assets/fonts/Mx437_EpsonMGA.ttf" id="6_nbsun"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ocxkw"]
-bg_color = Color(0.0745098, 0.0745098, 0.0745098, 1)
+bg_color = Color(0.741176, 0.741176, 0.741176, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8ewju"]
-bg_color = Color(0.207843, 0.207843, 0.207843, 1)
+bg_color = Color(0.0862745, 0, 0.686275, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_67pt8"]
-bg_color = Color(0.25098, 0.25098, 0.25098, 1)
+bg_color = Color(0.0862745, 0, 0.686275, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_m5a35"]
 
@@ -28,6 +29,10 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_3ltkm")
+
+[node name="Player" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2_17s4e")
 
 [node name="CommandProcessor" type="Node" parent="."]
 unique_name_in_owner = true
@@ -108,15 +113,15 @@ theme_override_constants/separation = 10
 
 [node name="Caret" type="Label" parent="GameUserInterface/MarginContainer/Rows/InputArea/Columns"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("1_gm0px")
-theme_override_font_sizes/font_size = 28
+theme_override_fonts/font = ExtResource("6_nbsun")
+theme_override_font_sizes/font_size = 18
 text = " >"
 
 [node name="Input" type="LineEdit" parent="GameUserInterface/MarginContainer/Rows/InputArea/Columns"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_fonts/font = ExtResource("1_gm0px")
-theme_override_font_sizes/font_size = 28
+theme_override_fonts/font = ExtResource("6_nbsun")
+theme_override_font_sizes/font_size = 18
 theme_override_styles/normal = SubResource("StyleBoxEmpty_m5a35")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_ch1s8")
 max_length = 48

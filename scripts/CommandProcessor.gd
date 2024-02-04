@@ -2,8 +2,11 @@ extends Node
 
 var _current_area: WorldArea = null
 
+var _player: Player
 
-func initialize(starting_area: WorldArea) -> String:
+
+func initialize(player: Player, starting_area: WorldArea) -> String:
+	_player = player
 	return change_area(starting_area)
 
 
@@ -11,12 +14,20 @@ func parse_direction(direction: String) -> String:
 	match direction:
 		"norte":
 			return "north"
+		"north":
+			return "norte"
 		"sur":
 			return "south"
+		"south":
+			return "sur"
 		"este":
 			return "east"
+		"east":
+			return "este"
 		"oeste":
 			return "west"
+		"west":
+			return "oeste"
 		_:
 			return ""
 
@@ -38,6 +49,14 @@ func process_command(input: String) -> String:
 			return go(second_word)
 		"ayuda":
 			return help()
+		"tomar":
+			return take(second_word)
+		"soltar":
+			return drop(second_word)
+		"inventario":
+			return inventory()
+		"inv":
+			return inventory()
 		_:
 			return "No reconozco esa orden"
 
@@ -59,6 +78,41 @@ func go(direction: String) -> String:
 		return "No puedes avanzar porque dios se equivocó"
 
 	return "No hay salida hacia el %s" % direction
+
+
+func take(item_name: String) -> String:
+	item_name = item_name.to_lower()
+	if item_name == "":
+		return "¿Que deseas agarrar?"
+
+	for area_item: Item in _current_area.area_items:
+		if area_item.name.to_lower() == item_name:
+			_player.take_item(area_item)
+			_current_area.remove_area_item(area_item)
+			return "Has agarrado el objeto %s" % item_name
+
+	return "No se ha encontrado el objeto %s" % item_name
+
+
+func drop(item_name: String) -> String:
+	item_name = item_name.to_lower()
+	if item_name == "":
+		return "¿Que deseas soltar?"
+
+	for player_item: Item in _player.inventory:
+		if player_item.name.to_lower() == item_name:
+			_current_area.add_area_item(player_item)
+			_player.drop_item(player_item)
+			return "Has soltado el objeto %s" % item_name
+
+	return "No tienes el objeto %s" % item_name
+
+
+func inventory() -> String:
+	if len(_player.inventory) == 0:
+		return "No tienes objetos en el inventario"
+
+	return _player.get_inventory_items()
 
 
 func help() -> String:

@@ -5,6 +5,7 @@ extends Control
 @export var response_scene: PackedScene = preload("res://components/ui/response.tscn")
 @export var input_response_scene: PackedScene = preload("res://components/ui/input_response.tscn")
 
+@onready var _player: Node = %Player
 @onready var _command_processor: Node = %CommandProcessor
 @onready var _area_manager: Node = %AreaManager
 @onready var _history_rows: VBoxContainer = %HistoryRows
@@ -36,7 +37,7 @@ func _ready() -> void:
 	create_response(
 		'Bienvenido a esta simple aventura de texto. Introduzca "ayuda" para ver las posibles órdenes.'
 	)
-	create_response(_command_processor.initialize(_area_manager.get_child(0)))
+	create_response(_command_processor.initialize(_player, _area_manager.get_child(0)))
 
 
 func _on_command_process_response_added(response_text: String) -> void:

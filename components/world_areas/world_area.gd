@@ -19,6 +19,28 @@ func _ready() -> void:
 	_description_label.text = description
 
 
+func parse_direction(direction: String) -> String:
+	match direction:
+		"norte":
+			return "north"
+		"north":
+			return "norte"
+		"sur":
+			return "south"
+		"south":
+			return "sur"
+		"este":
+			return "east"
+		"east":
+			return "este"
+		"oeste":
+			return "west"
+		"west":
+			return "oeste"
+		_:
+			return ""
+
+
 func connect_exit(direction: String, area: WorldArea) -> void:
 	var exit = Exit.new()
 	exit.area1 = area
@@ -39,6 +61,10 @@ func add_area_item(item: Item) -> void:
 	area_items.append(item)
 
 
+func remove_area_item(item: Item) -> void:
+	area_items.erase(item)
+
+
 func get_area_items() -> String:
 	var items_names = area_items.map(func(item: Item): return item.name)
 
@@ -53,7 +79,7 @@ func get_area_items() -> String:
 
 
 func get_area_exits() -> String:
-	var exits = PackedStringArray(area_exits.keys())
+	var exits = PackedStringArray(area_exits.keys().map(parse_direction))
 	var exits_string = exits if len(exits) > 0 else PackedStringArray(["No hay salida ups"])
 	return " ".join(exits_string)
 

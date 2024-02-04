@@ -1,10 +1,10 @@
 [gd_scene load_steps=2 format=3 uid="uid://cv1inpyynerli"]
 
-[ext_resource type="FontFile" uid="uid://djlirv204gvvk" path="res://assets/fonts/CutiveMono-Regular.ttf" id="1_jfljj"]
+[ext_resource type="FontFile" uid="uid://b3oer5hyf1nmw" path="res://assets/fonts/Mx437_EpsonMGA.ttf" id="1_6bf50"]
 
 [node name="Response" type="Label"]
 custom_minimum_size = Vector2(400, 0)
-theme_override_fonts/font = ExtResource("1_jfljj")
-theme_override_font_sizes/font_size = 28
+theme_override_fonts/font = ExtResource("1_6bf50")
+theme_override_font_sizes/font_size = 18
 text = "Game response here"
 autowrap_mode = 3
